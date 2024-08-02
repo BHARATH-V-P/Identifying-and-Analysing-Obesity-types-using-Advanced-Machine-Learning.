@@ -1,1 +1,82 @@
+## Baseline Validation
 
+--------------------------------------------------------------
+Preprocessing_Technique    Models                   Accuracy    Cohen    log_loss    R2
+--------------------------------------------------------------
+preprocessing_1            XGB                      0.912672    0.897620 0.272758    0.966311
+preprocessing_1            LGB                      0.912672    0.897624 0.267619    0.966619
+preprocessing_1            randomforestclassifier   0.901948    0.885047 0.394815    0.962773
+--------------------------------------------------------------
+preprocessing_2            XGB                      0.910046    0.894542 0.273115    0.964875
+preprocessing_2            LGB                      0.913110    0.898130 0.268737    0.966721
+preprocessing_2            randomforestclassifier   0.895382    0.877345 0.411310    0.961081
+--------------------------------------------------------------
+preprocessing_3            XGB                      0.913767    0.898905 0.272454    0.966362
+preprocessing_3            LGB                      0.911359    0.896081 0.268447    0.967336
+preprocessing_3            randomforestclassifier   0.908295    0.892495 0.368623    0.967285
+--------------------------------------------------------------
+
+## Optimized best performing models using Bayesian Optimization to improve log_loss and increase model confidence.
+
+--------------------------------------------------------------
+Model_preprocessing        Accuracy_score    Cohen_score    logloss
+--------------------------------------------------------------
+xgb_3                      0.913986          0.984344       0.244531
+xgb_2                      0.916174          0.985066       0.243821
+--------------------------------------------------------------
+
+## Validating Resampled datasets
+
+-----------------------------------------------------------------------
+Preprocessing_Technique       Models                  Accuracy     Cohen      log_loss
+-----------------------------------------------------------------------
+preprocessing_1_resampled     XGB                     0.911578     0.896324   0.274630
+preprocessing_1_resampled     LGB                     0.910265     0.894795   0.275256
+preprocessing_1_resampled     randomforestclassifier  0.900635     0.883511   0.405755
+-----------------------------------------------------------------------
+preprocessing_2_resampled     XGB                     0.909170     0.893516   0.280470
+preprocessing_2_resampled     LGB                     0.909170     0.893527   0.276089
+preprocessing_2_resampled     randomforestclassifier  0.893850     0.875567   0.420534
+-----------------------------------------------------------------------
+preprocessing_3_resampled     XGB                     0.908295     0.892491   0.279440
+preprocessing_3_resampled     LGB                     0.911140     0.895826   0.272484
+preprocessing_3_resampled     randomforestclassifier  0.906325     0.890182   0.383049
+-----------------------------------------------------------------------
+
+## Evaluation Metrics for XGB Models with Preprocessing_1 and Clustered Data
+
+-------------------------------------------------------
+Preprocessing_1_clusters   Models   Accuracy   Cohen
+-------------------------------------------------------
+cluster_0                 XGB      0.949427   0.926341
+cluster_1                 XGB      0.868981   0.812300
+cluster_2                 XGB      0.971963   0.847947
+cluster_3                 XGB      0.886340   0.859969
+cluster_4                 XGB      0.855731   0.821314
+cluster_5                 XGB      0.834933   0.778003
+-------------------------------------------------------
+
+## Evaluation Metrics for LGB Models with Preprocessing_1 and Clustered Data
+
+-------------------------------------------------------
+Preprocessing_1_clusters   Models   Accuracy   Cohen
+-------------------------------------------------------
+cluster_0                 LGB      0.949427   0.926282
+cluster_1                 LGB      0.883539   0.833474
+cluster_2                 LGB      0.970405   0.838244
+cluster_3                 LGB      0.886340   0.859945
+cluster_4                 LGB      0.853755   0.818306
+cluster_5                 LGB      0.831094   0.773287
+-------------------------------------------------------
+ 
+## Optimized best performing models using Optuna improve log_loss and increase model confidence.
+
+Evaluation Metrics for XGB and LGB Models with Different Preprocessing Techniques
+---------------------------------------------------------------------------------
+Model_preprocessing   Accuracy_score   Cohen_score   logloss
+---------------------------------------------------------------------------------
+xgb_3                 0.915299         0.984676      0.245420
+xgb_2                 0.914642         0.984372      0.246701
+lgb_3                 0.913986         0.984353      0.245992
+lgb_2                 0.915299         0.984746      0.246524
+---------------------------------------------------------------------------------
