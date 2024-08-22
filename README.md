@@ -14,7 +14,7 @@ This project aims to build a classification model to predict an individual’s h
 ## Introduction
 
 This project aims to build a classification model to accurately predict the health category an individual belongs to, such as underweight, normal weight, obesity, and its subclasses. The goal is to optimize the model and handle any overfitting issues using techniques like Bayesian optimization, Grid Search CV, and Optuna.
-The dataset is diverse, with only minor imbalances. The project examines significant variability in the dependent variable induced by numerical variables using ANOVA and the Shapiro-Wilk test. The primary machine learning models used are Random Forest Classifier, XGB Classifier, and LGB Classifier. Further improvements to the models were aimed to be achieved through KMeans Cluster Analysis.
+The dataset is diverse, with only minor imbalances. The project examines significant variability in the dependent variable induced by numerical variables using ANOVA and the Shapiro-Wilk test. The primary machine learning models used are Random Forest Classifier, XGB Classifier, and LGB Classifier. Further improvements to the models were aimed to be achieved through K Prototypes clustering.
 
 ## Installation
 
@@ -54,7 +54,8 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
    - Explores 3 different preprocessing techniques to evaluate how they effect model performance
    - Model Training: Utilizes Random Forest Classification, XGBoost and LGB for machine learning.
    - Create custom metrics to aid better results from Optuna and Bayesian Optimization
-   - Attempts to redduce overfitting to specific classes thus improving generalization
+   - Understanding the process of clustering and its effect on model peformance by conducting both global specific and cluster specific analysis
+   - Attempts to reduce overfitting of the model to specific classes thus improving generalization
    - Model Evaluation based on the quality of fitting during data trianing
 
 ## Results
@@ -72,6 +73,9 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 - Evaluation on clustered data showed that XGB and LGB models performed best in cluster_2, with accuracies of 0.9719 (XGB) and 0.9704 (LGB). This indicates that the models effectively capture the nuances in clustered data.
 
 Overall, the project demonstrated significant improvements in model performance through optimization techniques and clustering, achieving better accuracy and reduced log_loss.
+
+### Best Performing Model
+LightGBM model-: the metrics are: Accuracy Score: 0.92, Cohen's Kappa Score: 0.9851, Log Loss: 0.2445.
 
 
 ## License
