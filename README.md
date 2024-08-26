@@ -185,7 +185,19 @@ These scores indicate a moderate agreement between the BMI-based labels and the 
 - The high contribution of features like Height and Weight suggests they play a crucial role in the clustering and classification tasks. Feature importance should guide further feature engineering and model refinement.
 
 --------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 
+## Best Model - LGB Classifier - Preprocessed Data 2 - Hyperparameter Tuned
+--------------------------------------------------------------------------------------------
+
+The LightGBM (LGB) classifier, using the second preprocessing method and optimized hyperparameters, achieved the following performance metrics:
+
+- **Accuracy Score**: 0.92
+- **Cohen's Kappa Score**: 0.9851
+- **Log Loss**: 0.2445
+
+These metrics indicate that the LGB classifier with the specified preprocessing and hyperparameter tuning provides strong performance, demonstrating high accuracy and a good agreement between the predicted and actual values.
+--------------------------------------------------------------------------------------------
 This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
 
 ## License
