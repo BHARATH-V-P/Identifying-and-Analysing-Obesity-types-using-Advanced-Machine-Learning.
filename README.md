@@ -76,23 +76,107 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 
 ## Results
 
-### Baseline Validation
-- We assessed models using various preprocessing techniques, including XGB, LGB, and RandomForestClassifier. Preprocessing_1 yielded the highest accuracy for XGB and LGB models, with notable accuracy scores of around 0.9126 for XGB and 0.9127 for LGB.
+## Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
 
-### Optimized Models
-- Bayesian Optimization and Optuna were used to fine-tune the models. The optimized XGB models achieved accuracy scores up to 0.9162, improving log_loss to approximately 0.2438. For LGB models, the best accuracy reached 0.9153, with a log_loss of 0.2465.
+### 1. Classification Report
 
-### Resampled Data Validation
-- Models trained on resampled data showed varied performance. The LGB model with preprocessing_1_resampled achieved an accuracy of 0.9111 and a Cohen score of 0.8958. XGB models had slightly lower accuracy compared to baseline but still performed well.
+- The classification metrics show varying levels of performance across different classes, with high precision and recall for Insufficient_Weight and Obesity_Type_III.
+- The overall accuracy (0.37) and the macro and weighted averages suggest that the BMI-based labels do not align well with the dataset target labels.
 
-### Clustered Data Evaluation
-- Evaluation on clustered data showed that XGB and LGB models performed best in cluster_2, with accuracies of 0.9719 (XGB) and 0.9704 (LGB). This indicates that the models effectively capture the nuances in clustered data.
+### 2. Scoring Metrics
 
-Overall, the project demonstrated significant improvements in model performance through optimization techniques and clustering, achieving better accuracy and reduced log_loss.
+- **Accuracy Score**: 0.373157
+- **Cohen's Kappa Score**: 0.872570
 
-### Best Performing Model
-LightGBM model-: the metrics are: Accuracy Score: 0.92, Cohen's Kappa Score: 0.9851, Log Loss: 0.2445.
+These scores indicate a moderate agreement between the BMI-based labels and the assigned class labels.
 
+### 3. Interpretation
+
+- The BMI-based labels do not perform well across many classes, with particularly low precision and recall for several obesity types. This suggests that BMI alone may not be a strong predictor for these categories, highlighting the need for more comprehensive features or models.
+
+## Correlation and ANOVA Analysis
+
+### 1. Shapiro-Wilk Test Results
+
+- All categories' numerical features are not normally distributed, which is significant for selecting appropriate statistical tests and models.
+
+### 2. Interpretation
+
+- Since the numerical features do not follow a normal distribution, non-parametric methods or transformations may be required for further analysis.
+
+## Baseline Model Validation
+
+### 1. Performance Metrics
+
+- **Top Performing Models**:
+  - Preprocessing 1: XGB and LGB
+  - Preprocessing 2: LGB
+  - Preprocessing 3: XGB
+
+### 2. Interpretation
+
+- The XGB and LGB models performed similarly well across different preprocessing techniques, indicating their robustness. The choice of preprocessing method can impact performance but not drastically.
+
+## Model Training Using Optimized Hyperparameters
+
+### 1. Performance Metrics
+
+- **XGB Classifier**:
+  - Highest accuracy and Cohen's Kappa scores were achieved with preprocessing 2 and 3 configurations.
+- **LGB Classifier**:
+  - Best performance was noted with preprocessing 2 using Optuna.
+
+### 2. Interpretation
+
+- Optimizing hyperparameters significantly improved model performance, with XGB and LGB showing strong results. The choice of configuration can greatly impact the model’s accuracy and agreement.
+
+## Performance Metrics by Resampling Method
+
+### 1. Metrics for Random Forest, XGB, and LGB
+
+- **XGB Classifier**:
+  - RandomUnderSampler and RandomOverSampler showed better accuracy compared to other methods.
+- **LGB Classifier**:
+  - ADASYN and RandomOverSampler were the most effective methods.
+
+### 2. Interpretation
+
+- The effectiveness of resampling methods varies across models. For XGB, RandomUnderSampler performed best, while for LGB, ADASYN was more effective.
+
+## Validating Resampled Datasets
+
+### 1. Performance Metrics
+
+- **Top Performing Models**:
+  - Preprocessing 1 Resampled: XGB
+  - Preprocessing 2 Resampled: LGB
+  - Preprocessing 3 Resampled: LGB
+
+### 2. Interpretation
+
+- Resampling did not lead to a significant improvement in performance. It’s crucial to assess whether resampling adds value or introduces more noise.
+
+## Clustering Inference and Recommendations
+
+### 1. Preprocessing 1, 2, and 3
+
+- Different numbers of clusters (6 for preprocessing 1, 7 for preprocessing 2, and 6 for preprocessing 3) were recommended based on WCSS and silhouette scores.
+
+### 2. Interpretation
+
+- A balanced approach considering WCSS and silhouette scores is essential for effective clustering. The recommended cluster numbers should help in capturing underlying patterns without overfitting.
+
+## PCA Component Weights and Percentage Contribution
+
+### 1. Key Features
+
+- Features like Height, Weight, and Age contribute significantly to the principal components, indicating their importance in the clustering and overall model performance.
+
+### 2. Interpretation
+
+- The high contribution of features like Height and Weight suggests they play a crucial role in the clustering and classification tasks. Feature importance should guide further feature engineering and model refinement.
+
+This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
 
 ## License
 
