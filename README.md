@@ -34,7 +34,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
    -Ensure the dataset is named obesity_train.csv, Obesity_original_Dataset.csv, or adjust the script accordingly.
 
 2. Open the Jupyter Notebook:
-   - Launch the notebook: Identifying_and_Analysing_Obesity_types_using_Advanced_Machine_Learning.ipynb.
+   - Launch the notebook: Identifying_and_Analysing_Obesity_types_using_Advanced_Machine_Learning_final.ipynb.
 
 3. Notebook Workflow:
    - Data Preprocessing:
@@ -184,8 +184,10 @@ These scores indicate a moderate agreement between the BMI-based labels and the 
 
 - The high contribution of features like Height and Weight suggests they play a crucial role in the clustering and classification tasks. Feature importance should guide further feature engineering and model refinement.
 
-This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
 --------------------------------------------------------------------------------------------
+
+This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
+
 ## License
 
    This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
