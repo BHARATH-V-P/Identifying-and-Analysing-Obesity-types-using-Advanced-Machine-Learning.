@@ -75,9 +75,9 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
    - Model Evaluation: Evaluates models based on the quality of fitting during data training, using various evaluation metrics.
 
 ## Results
-
-### Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
 --------------------------------------------------------------------------------------------
+### Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
+
 #### 1. Classification Report
 
 - The classification metrics show varying levels of performance across different classes, with high precision and recall for Insufficient_Weight and Obesity_Type_III.
@@ -93,102 +93,102 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 #### 3. Interpretation
 
 - The BMI-based labels do not perform well across many classes, with particularly low precision and recall for several obesity types. This suggests that BMI alone may not be a strong predictor for these categories, highlighting the need for more comprehensive features or models.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### Correlation and ANOVA Analysis
---------------------------------------------------------------------------------------------
+
 #### 1. Shapiro-Wilk Test Results
 
 - All categories' numerical features are not normally distributed, which is significant for selecting appropriate statistical tests and models.
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - Since the numerical features do not follow a normal distribution, non-parametric methods or transformations may be required for further analysis.
 --------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------
+
 ### Baseline Model Validation
---------------------------------------------------------------------------------------------
+
 #### 1. Performance Metrics
 
 - **Top Performing Models**:
   - Preprocessing 1: XGB and LGB
   - Preprocessing 2: LGB
   - Preprocessing 3: XGB
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - The XGB and LGB models performed similarly well across different preprocessing techniques, indicating their robustness. The choice of preprocessing method can impact performance but not drastically.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### Model Training Using Optimized Hyperparameters
---------------------------------------------------------------------------------------------
+
 #### 1. Performance Metrics
 
 - **XGB Classifier**:
   - Highest accuracy and Cohen's Kappa scores were achieved with preprocessing 2 and 3 configurations.
 - **LGB Classifier**:
   - Best performance was noted with preprocessing 2 using Optuna.
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - Optimizing hyperparameters significantly improved model performance, with XGB and LGB showing strong results. The choice of configuration can greatly impact the model’s accuracy and agreement.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### Performance Metrics by Resampling Method
---------------------------------------------------------------------------------------------
+
 #### 1. Metrics for Random Forest, XGB, and LGB
 
 - **XGB Classifier**:
   - RandomUnderSampler and RandomOverSampler showed better accuracy compared to other methods.
 - **LGB Classifier**:
   - ADASYN and RandomOverSampler were the most effective methods.
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - The effectiveness of resampling methods varies across models. For XGB, RandomUnderSampler performed best, while for LGB, ADASYN was more effective.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### Validating Resampled Datasets
---------------------------------------------------------------------------------------------
+
 #### 1. Performance Metrics
 
 - **Top Performing Models**:
   - Preprocessing 1 Resampled: XGB
   - Preprocessing 2 Resampled: LGB
   - Preprocessing 3 Resampled: LGB
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - Resampling did not lead to a significant improvement in performance. It’s crucial to assess whether resampling adds value or introduces more noise.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### Clustering Inference and Recommendations
---------------------------------------------------------------------------------------------
+
 #### 1. Preprocessing 1, 2, and 3
 
 - Different numbers of clusters (6 for preprocessing 1, 7 for preprocessing 2, and 6 for preprocessing 3) were recommended based on WCSS and silhouette scores.
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - A balanced approach considering WCSS and silhouette scores is essential for effective clustering. The recommended cluster numbers should help in capturing underlying patterns without overfitting.
---------------------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------------------
 ### PCA Component Weights and Percentage Contribution
---------------------------------------------------------------------------------------------
+
 
 #### 1. Key Features
 
 - Features like Height, Weight, and Age contribute significantly to the principal components, indicating their importance in the clustering and overall model performance.
---------------------------------------------------------------------------------------------
+
 #### 2. Interpretation
 
 - The high contribution of features like Height and Weight suggests they play a crucial role in the clustering and classification tasks. Feature importance should guide further feature engineering and model refinement.
 
 --------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------
+
 
 ## Best Model - LGB Classifier - Preprocessed Data 2 - Hyperparameter Tuned
---------------------------------------------------------------------------------------------
+
 
 The LightGBM (LGB) classifier, using the second preprocessing method and optimized hyperparameters, achieved the following performance metrics:
 
@@ -198,6 +198,7 @@ The LightGBM (LGB) classifier, using the second preprocessing method and optimiz
 
 - These metrics indicate that the LGB classifier with the specified preprocessing and hyperparameter tuning provides strong performance, demonstrating high accuracy and a good agreement between the predicted and actual values
 - This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
+--------------------------------------------------------------------------------------------
 
 ## License
 
