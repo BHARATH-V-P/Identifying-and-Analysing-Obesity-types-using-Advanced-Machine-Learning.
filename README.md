@@ -77,7 +77,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 ## Results
 
 ### Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
-
+--------------------------------------------------------------------------------------------
 #### 1. Classification Report
 
 - The classification metrics show varying levels of performance across different classes, with high precision and recall for Insufficient_Weight and Obesity_Type_III.
