@@ -63,16 +63,16 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 
 
 ## Features
-   - Data Preprocessing: Handles missing values and  normalization.
-   - Insightful Visualizations to better understand the imabalanced dataset.
-   - Understanding the agreement between assigned class labels in the dataset and class labels solely based on just BMI
-   - Get a statistical overview of the features involved
-   - Explores 3 different preprocessing techniques to evaluate how they effect model performance
-   - Model Training: Utilizes Random Forest Classification, XGBoost and LGB for machine learning.
-   - Create custom metrics to aid better results from Optuna and Bayesian Optimization
-   - Understanding the process of clustering and its effect on model peformance by conducting both global specific and cluster specific analysis
-   - Attempts to reduce overfitting of the model to specific classes thus improving generalization
-   - Model Evaluation based on the quality of fitting during data trianing
+   - Data Preprocessing: Handles missing values and normalization to prepare the data for modeling.
+   - Insightful Visualizations: Provides visualizations to better understand the imbalanced dataset.
+   - Class Label Agreement Analysis: Compares assigned class labels in the dataset with labels derived solely from BMI calculations.
+   - Statistical Overview: Offers a statistical summary of the features involved in the analysis.
+   - Multiple Preprocessing Techniques: Explores three different preprocessing methods to evaluate their impact on model performance.
+   - Model Training: Utilizes machine learning algorithms such as Random Forest Classification, XGBoost, and LightGBM.
+   - Custom Metrics Creation: Develops custom metrics to enhance the performance of Optuna and Bayesian Optimization.
+   - Clustering Analysis: Investigates the clustering process and its effect on model performance through both global and cluster-specific analyses.
+   - Overfitting Reduction: Implements strategies to reduce overfitting, improving the model's generalization to different classes.
+   - Model Evaluation: Evaluates models based on the quality of fitting during data training, using various evaluation metrics.
 
 ## Results
 
