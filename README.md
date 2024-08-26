@@ -88,7 +88,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 - **Accuracy Score**: 0.373157
 - **Cohen's Kappa Score**: 0.872570
 
-These scores indicate a moderate agreement between the BMI-based labels and the assigned class labels.
+- These scores indicate a moderate agreement between the BMI-based labels and the assigned class labels.
 --------------------------------------------------------------------------------------------
 #### 3. Interpretation
 
@@ -196,8 +196,8 @@ The LightGBM (LGB) classifier, using the second preprocessing method and optimiz
 - **Cohen's Kappa Score**: 0.9851
 - **Log Loss**: 0.2445
 
-These metrics indicate that the LGB classifier with the specified preprocessing and hyperparameter tuning provides strong performance, demonstrating high accuracy and a good agreement between the predicted and actual values
-This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
+- These metrics indicate that the LGB classifier with the specified preprocessing and hyperparameter tuning provides strong performance, demonstrating high accuracy and a good agreement between the predicted and actual values
+- This detailed analysis offers insights into how well the models and clustering methods are performing, along with recommendations for improving feature engineering and model performance.
 
 ## License
 
