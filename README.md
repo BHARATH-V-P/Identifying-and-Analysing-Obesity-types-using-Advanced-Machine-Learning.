@@ -59,7 +59,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 4. Review the Results:
 
    - Evaluation Metrics: Found in results/evaluation_metrics.txt.
-   - Predictions: Found in results/predictions.csv.
+   - Predictions: Found in results/obesity_predictions.csv.
 
 
 ## Features
