@@ -1,0 +1,422 @@
+## Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+This section presents the comparison between class labels assigned in the dataset and class labels derived solely based on BMI. The metrics provided below give insight into the accuracy and quality of this agreement.
+
+### Classification Report
+
+| Class               | Precision | Recall | F1-Score | Support |
+|---------------------|-----------|--------|----------|---------|
+| Insufficient_Weight | 0.92      | 0.88   | 0.90     | 2523    |
+| Normal_Weight       | 0.78      | 0.89   | 0.83     | 3082    |
+| Obesity_Type_I      | 0.06      | 0.08   | 0.07     | 2910    |
+| Obesity_Type_II     | 0.03      | 0.03   | 0.03     | 3248    |
+| Obesity_Type_III    | 0.98      | 0.07   | 0.13     | 4046    |
+| Overweight_Level_I  | 0.41      | 0.81   | 0.55     | 2427    |
+| Overweight_Level_II | 0.08      | 0.09   | 0.08     | 2522    |
+
+**Accuracy**: 0.37  
+**Macro Average**: Precision = 0.46, Recall = 0.41, F1-Score = 0.37  
+**Weighted Average**: Precision = 0.49, Recall = 0.37, F1-Score = 0.35  
+
+### Scoring Between BMI-Based Labels and Dataset Target Labels
+
+| Metric              | Value    |
+|---------------------|----------|
+| Accuracy Score      | 0.373157 |
+| Cohen's Kappa Score | 0.872570 |
+
+
+
+## Correlation and ANOVA Analysis
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+### Shapiro-Wilk Test Results
+
+The Shapiro-Wilk test was performed to assess the normality of the numerical features corresponding to each category. Below are the results:
+
+- **Category: Insufficient_Weight**
+  - Test Statistic: **0.7949**
+  - p-value: **0.0**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Normal_Weight**
+  - Test Statistic: **0.9919**
+  - p-value: **3.657e-12**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Obesity_Type_I**
+  - Test Statistic: **0.9452**
+  - p-value: **1.356e-31**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Obesity_Type_II**
+  - Test Statistic: **0.9517**
+  - p-value: **1.847e-31**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Obesity_Type_III**
+  - Test Statistic: **0.9601**
+  - p-value: **5.520e-32**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Overweight_Level_I**
+  - Test Statistic: **0.8960**
+  - p-value: **1.001e-37**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+- **Category: Overweight_Level_II**
+  - Test Statistic: **0.9467**
+  - p-value: **2.627e-29**
+  - **Conclusion**: Reject the null hypothesis. The numerical feature corresponding to this category is **not normally distributed**.
+
+
+## Baseline Model Validation
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------
+Preprocessing_Technique    Models                   Accuracy    Cohen    log_loss    R2
+----------------------------------------------------------------------------------------------
+preprocessing_1            XGB                      0.912672    0.897620 0.272758    0.966311
+preprocessing_1            LGB                      0.912672    0.897624 0.267619    0.966619
+preprocessing_1            randomforestclassifier   0.901948    0.885047 0.394815    0.962773
+----------------------------------------------------------------------------------------------
+preprocessing_2            XGB                      0.910046    0.894542 0.273115    0.964875
+preprocessing_2            LGB                      0.913110    0.898130 0.268737    0.966721
+preprocessing_2            randomforestclassifier   0.895382    0.877345 0.411310    0.961081
+----------------------------------------------------------------------------------------------
+preprocessing_3            XGB                      0.913767    0.898905 0.272454    0.966362
+preprocessing_3            LGB                      0.911359    0.896081 0.268447    0.967336
+preprocessing_3            randomforestclassifier   0.908295    0.892495 0.368623    0.967285
+----------------------------------------------------------------------------------------------
+
+  - top performing models preprocessing_1 (XGB,LGB) preprocessing_2(LGB) and preprocessing_3(XGB)
+
+## Model training using optimized hyperparameters through cross validation
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Model          | Configuration                               | Accuracy Score | Log Loss | Cohen's Kappa Score |
+|----------------|---------------------------------------------|----------------|----------|---------------------|
+| XGB_Classifier | XGB_lib_cvs_preprocessing_3_hyperopt_logloss | 0.913986       | 0.244531 | 0.984344            |
+| XGB_Classifier | XGB_lib_cvs_preprocessing_2_hyperopt_logloss | 0.916174       | 0.243821 | 0.985066            |
+| LGB_Classifier | LGB_lib_cvs_preprocessing_2_optuna_accuracy  | 0.915955       | 0.243923 | 0.984897            |
+| LGB_Classifier | LGB_lib_dir_preprocessing_2_optuna_accuracy  | 0.915518       | 0.244231 | 0.984685            |
+
+
+
+## Model training using optimized hyperparameters directly through a single validation set
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Model               | Configuration                               | Accuracy Score | Log Loss | Cohen's Kappa Score |
+|---------------------|---------------------------------------------|----------------|----------|---------------------|
+| XGB_Classifier_dir  | XGB_lib_cvs_preprocessing_3_hyperopt_logloss | 0.914642       | 0.243602 | 0.984225            |
+| XGB_Classifier_dir  | XGB_lib_cvs_preprocessing_2_hyperopt_logloss | 0.916393       | 0.244015 | 0.985027            |
+| LGB_Classifier_dir  | LGB_lib_cvs_preprocessing_2_optuna_accuracy  | 0.915299       | 0.244946 | 0.984434            |
+| LGB_Classifier_dir  | LGB_lib_dir_preprocessing_2_optuna_accuracy  | 0.919019       | 0.244476 | 0.985090            |
+
+
+
+## Performance Metrics by Resampling Method- Random FOrest Classifier
+
+| Method             | Accuracy Score | F1 Score |
+|--------------------|----------------|----------|
+| SMOTE              | 0.893850       | 0.882547 |
+| ADASYN             | 0.898884       | 0.887968 |
+| RandomOverSampler  | 0.895382       | 0.884233 |
+| RandomUnderSampler | 0.893412       | 0.882391 |
+| NearMiss           | 0.890348       | 0.879277 |
+| SMOTEENN           | 0.878529       | 0.866102 |
+| SMOTETomek         | 0.892537       | 0.880820 |
+
+
+
+
+## Performance Metrics by Resampling Method- XGB Classifier
+
+| Method             | Accuracy Score | F1 Score |
+|--------------------|----------------|----------|
+| SMOTE              | 0.909170       | 0.899728 |
+| ADASYN             | 0.908514       | 0.899003 |
+| RandomOverSampler  | 0.910703       | 0.901617 |
+| RandomUnderSampler | 0.912672       | 0.903750 |
+| NearMiss           | 0.906106       | 0.896880 |
+| SMOTEENN           | 0.896039       | 0.885190 |
+| SMOTETomek         | 0.908076       | 0.898417 |
+
+
+
+
+## Performance Metrics by Resampling Method- LGB Classifier
+
+| Method             | Accuracy Score | F1 Score |
+|--------------------|----------------|----------|
+| SMOTE              | 0.909170       | 0.899848 |
+| ADASYN             | 0.913329       | 0.904154 |
+| RandomOverSampler  | 0.911797       | 0.902744 |
+| RandomUnderSampler | 0.911359       | 0.902126 |
+| NearMiss           | 0.907420       | 0.898272 |
+| SMOTEENN           | 0.891661       | 0.880557 |
+| SMOTETomek         | 0.910046       | 0.900775 |
+
+
+
+
+## Validating Resampled datasets
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+Preprocessing_Technique       Models                  Accuracy     Cohen      log_loss
+-----------------------------------------------------------------------
+preprocessing_1_resampled     XGB                     0.911578     0.896324   0.274630
+preprocessing_1_resampled     LGB                     0.910265     0.894795   0.275256
+preprocessing_1_resampled     randomforestclassifier  0.900635     0.883511   0.405755
+-----------------------------------------------------------------------
+preprocessing_2_resampled     XGB                     0.909170     0.893516   0.280470
+preprocessing_2_resampled     LGB                     0.909170     0.893527   0.276089
+preprocessing_2_resampled     randomforestclassifier  0.893850     0.875567   0.420534
+-----------------------------------------------------------------------
+preprocessing_3_resampled     XGB                     0.908295     0.892491   0.279440
+preprocessing_3_resampled     LGB                     0.911140     0.895826   0.272484
+preprocessing_3_resampled     randomforestclassifier  0.906325     0.890182   0.383049
+-----------------------------------------------------------------------
+
+
+
+
+
+## Model Performance Analysis
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+- **Oversampling Impact:** 
+  - No notable improvement in model performance was observed with oversampling methods. The model's tendency to prioritize classes 0, 1, 5, and 6 suggests that complex non-linear relationships among features may not be fully captured, and low variability in these classes could be a factor.
+
+- **Model Improvements:**
+  - **Address Overfitting:**
+    - Handle multicollinearity.
+    - Reduce bias towards majority classes.
+  - **Feature Importance:**
+    - Height, weight, and age are prioritized in the models.
+    - Classes 2, 3, and 4 show minimal variability in numerical features, indicating a need for better feature exploration or engineering.
+
+- **Feature Engineering Recommendations:**
+  - Introduce new features that add variability to less represented classes.
+  - Focus on enhancing features with existing high importance.
+
+- **Performance Metrics:**
+  - **XGBClassifier Improvement:**
+    - Cohen's kappa score increased from 0.898130 (baseline) to 0.985090 (best-performing model).
+    - Out-of-fold kappa score during cross-validation was lower at 0.902, highlighting better generalization on unseen data.
+
+
+## Clustering Inference and Recommendations
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+### Preprocessing 1
+- **WCSS Analysis:**
+  - Significant decrease observed up to 6 clusters.
+  - Beyond 7 clusters, rate of decrease diminishes.
+
+- **Silhouette Scores:**
+  - High score at 4 clusters with significant increase after a small drop.
+  - Scores plateau from 7 to 10 clusters.
+
+- **Recommendation:**
+  - Use 6 clusters based on WCSS and silhouette scores to avoid overfitting and capture underlying patterns effectively.
+
+### Preprocessing 2
+- **WCSS Analysis:**
+  - Significant decrease observed up to 7 clusters.
+  - Rate of decrease diminishes beyond 7 clusters.
+
+- **Silhouette Scores:**
+  - High score with 3 clusters, increasing significantly from 4 clusters onwards.
+  - Plateau observed from 9 to 10 clusters.
+
+- **Recommendation:**
+  - Use 7 clusters based on WCSS and silhouette scores to balance model complexity and clustering quality.
+
+### Preprocessing 3
+- **WCSS Analysis:**
+  - Significant decrease between 2 and 4 clusters, with further decrease up to 6 clusters.
+  - Returns diminish beyond 6 clusters.
+
+- **Silhouette Scores:**
+  - Highest score at 2 clusters and another peak at 10 clusters.
+  - Significant increase observed from 7 to 10 clusters.
+
+- **Recommendation:**
+  - For complex models, use 9 clusters. For simpler models, 5 or 6 clusters are sufficient. Considering both metrics, 6 clusters are recommended to balance detail and generalization.
+
+
+
+
+## PCA Component Weights and Percentage Contribution for Clustering Visualization
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Features                                   | PCA_1 Weights | PCA_2 Weights | PCA_1 Percentage Contribution (%) | PCA_2 Percentage Contribution (%) |
+|--------------------------------------------|---------------|---------------|----------------------------------|----------------------------------|
+| num__Age                                   | 0.194660      | 0.506725      | 6.103258                         | 15.851525                        |
+| num__FCVC                                  | 0.124601      | 0.324850      | 3.906682                         | 10.162060                        |
+| num__NCP                                   | 0.230251      | -0.154035     | 7.219168                         | 4.818567                         |
+| num__CH2O                                  | 0.375394      | -0.024266     | 11.769891                        | 0.759111                         |
+| num__FAF                                   | 0.147912      | -0.457894     | 4.637537                         | 14.323970                        |
+| num__TUE                                   | -0.073947     | -0.420677     | 2.318506                         | 13.159739                        |
+| num__Height                                | 0.545877      | -0.313826     | 17.115126                        | 9.817183                         |
+| num__Weight                                | 0.569905      | 0.231926      | 17.868476                        | 7.255166                         |
+| non_ord__MTRANS_Automobile                 | 0.036350      | 0.085585      | 1.139707                         | 2.677289                         |
+| non_ord__MTRANS_Bike                       | 0.000144      | -0.000662     | 0.004515                         | 0.020724                         |
+| non_ord__MTRANS_Motorbike                  | -0.000142     | 0.000050      | 0.004441                         | 0.001576                         |
+| non_ord__MTRANS_Public_Transportation      | -0.034632     | -0.068691     | 1.085835                         | 2.148811                         |
+| non_ord__MTRANS_Walking                    | -0.001721     | -0.016282     | 0.053947                         | 0.509331                         |
+| bin__Gender_0                              | 0.159822      | -0.154979     | 5.010955                         | 4.848095                         |
+| bin__Gender_1                              | -0.159822     | 0.154979      | 5.010955                         | 4.848095                         |
+| bin__family_history_with_overweight_0       | 0.131157      | 0.058085      | 4.112231                         | 1.817022                         |
+| bin__family_history_with_overweight_1       | -0.131157     | -0.058085     | 4.112231                         | 1.817022                         |
+| bin__FAVC_0                                | 0.037754      | 0.013079      | 1.183729                         | 0.409146                         |
+| bin__FAVC_1                                | -0.037754     | -0.013079     | 1.183729                         | 0.409146                         |
+| bin__SMOKE_0                               | 0.004623      | 0.000422      | 0.144934                         | 0.013212                         |
+| bin__SMOKE_1                               | -0.004623     | -0.000422     | 0.144934                         | 0.013212                         |
+| bin__SCC_0                                 | -0.020447     | -0.010858     | 0.641079                         | 0.339654                         |
+| bin__SCC_1                                 | 0.020447      | 0.010858      | 0.641079                         | 0.339654                         |
+| remainder__CAEC                            | 0.079458      | 0.062118      | 2.491282                         | 1.943192                         |
+| remainder__CALC                            | -0.066844     | -0.054264     | 2.095774                         | 1.697000                         |
+
+
+## Model Performance with Cluster Information Feature- XGB Classifier
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Model             | Accuracy |
+|-------------------|----------|
+| XGB Classifier    | 0.911524 |
+| LGBM Classifier   | 0.911524 |
+
+## Cluster Analysis- Global specific models
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+###  Model Performance with Cross-Validation Tuning
+
+| Model             | Accuracy |
+|-------------------|----------|
+| XGB Classifier    | 0.916229 |
+| LGBM Classifier   | 0.907091 |
+
+
+
+### Model Performance with Tuned hyperparameters
+
+| Model             | Accuracy |
+|-------------------|----------|
+| XGB Classifier    | 0.914423 |
+| LGBM Classifier   | 0.909389 |
+
+
+### Cluster-Based Model Evaluation- XGB Classifier
+
+| Cluster No. | Accuracy | Cohen's Kappa Score |
+|-------------|----------|---------------------|
+| 0           | 0.892571 | 0.944418            |
+| 1           | 0.893504 | 0.971797            |
+| 2           | 0.952162 | 0.983298            |
+| 3           | 0.980273 | 0.984466            |
+| 4           | 0.894000 | 0.955066            |
+| 5           | 0.844794 | 0.891391            |
+
+### Cluster-Based Model Evaluation- LGB Classifier
+
+| Cluster No. | Accuracy | Cohen's Kappa Score |
+|-------------|----------|---------------------|
+| 0           | 0.894857 | 0.936074            |
+| 1           | 0.887114 | 0.967862            |
+| 2           | 0.947562 | 0.982837            |
+| 3           | 0.978756 | 0.981920            |
+| 4           | 0.872000 | 0.943989            |
+| 5           | 0.840864 | 0.892876            |
+
+
+
+## Cluster Analysis- Cluster specific models
+
+### Cluster-Based Model Evaluation- XGB Classifier
+
+| Cluster No. | Accuracy | Cohen's Kappa Score |
+|-------------|----------|---------------------|
+| 0           | 0.889143 | 0.942277            |
+| 1           | 0.886049 | 0.969569            |
+| 2           | 0.948482 | 0.983006            |
+| 3           | 0.972686 | 0.979024            |
+| 4           | 0.874000 | 0.944624            |
+| 5           | 0.836935 | 0.894921            |
+
+
+### Cluster-Based Model Evaluation-LGB Classifier
+
+| Cluster No. | Accuracy | Cohen's Kappa Score |
+|-------------|----------|---------------------|
+| 0           | 0.891429 | 0.941936            |
+| 1           | 0.889244 | 0.968566            |
+| 2           | 0.946642 | 0.981237            |
+| 3           | 0.969651 | 0.979276            |
+| 4           | 0.866000 | 0.943315            |
+| 5           | 0.834971 | 0.890986            |
+
+
+
+## XGB Model Comparison: Global vs. Cluster-Specific Accuracy and Cohen's Kappa Score
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Cluster No. | Global Model Accuracy | Cluster-Specific Model Accuracy | Global Model Cohen's Score | Cluster-Specific Model Cohen's Score |
+|-------------|------------------------|---------------------------------|----------------------------|-------------------------------------|
+| 0           | 0.892571               | 0.889143                        | 0.944418                   | 0.942277                            |
+| 1           | 0.893504               | 0.886049                        | 0.971797                   | 0.969569                            |
+| 2           | 0.952162               | 0.948482                        | 0.983298                   | 0.983006                            |
+| 3           | 0.980273               | 0.972686                        | 0.984466                   | 0.979024                            |
+| 4           | 0.894000               | 0.874000                        | 0.955066                   | 0.944624                            |
+| 5           | 0.844794               | 0.836935                        | 0.891391                   | 0.894921                            |
+
+
+## LGB Model Comparison: Global vs. Cluster-Specific Accuracy and Cohen's Kappa Score
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+| Cluster No. | Global Model Accuracy | Cluster-Specific Model Accuracy | Global Model Cohen's Score | Cluster-Specific Model Cohen's Score |
+|-------------|------------------------|---------------------------------|----------------------------|-------------------------------------|
+| 0           | 0.894857               | 0.891429                        | 0.936074                   | 0.941936                            |
+| 1           | 0.887114               | 0.889244                        | 0.967862                   | 0.968566                            |
+| 2           | 0.947562               | 0.946642                        | 0.982837                   | 0.981237                            |
+| 3           | 0.978756               | 0.969651                        | 0.981920                   | 0.979276                            |
+| 4           | 0.872000               | 0.866000                        | 0.943989                   | 0.943315                            |
+| 5           | 0.840864               | 0.834971                        | 0.892876                   | 0.890986                            |
+
+
+
+## Best Model - LGB Classifier - Preprocessed data 2 - Hyperparameter tuned
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+### Accuracy_score-: 0.92
+### cohen_kappa_score-: 0.9850904176654074
+### logloss-: 0.24447626957497162
