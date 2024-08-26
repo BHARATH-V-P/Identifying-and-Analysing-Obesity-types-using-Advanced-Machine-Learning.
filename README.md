@@ -75,7 +75,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
    - Model Evaluation: Evaluates models based on the quality of fitting during data training, using various evaluation metrics.
 
 ## Results
---------------------------------------------------------------------------------------------
+
 ### Understanding the Agreement Between Assigned Class Labels and BMI-Based Class Labels
 
 #### 1. Classification Report
