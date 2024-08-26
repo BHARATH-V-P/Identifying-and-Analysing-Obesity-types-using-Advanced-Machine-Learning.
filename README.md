@@ -28,23 +28,39 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
    pip install -r requirements.txt
 
 ## Usage
-1. Prepare your dataset: Place your datasets in the data/ directory. Ensure it is named OBESITY TRAIN.csv, ObesityDataSet.csv or adjust the script accordingly.
-3. Open the Jupyter Notebook: jupyter notebook "OBESITY_CONCISE_EDA.ipynb"
-   The script will:
-   - Preprocess the raw data by checking for null values, duplicate values and any other discrepencies within the raw data.
-   - Calculates BMI for individuals in a dataset, classifying them into health categories based on this metric, and comparing these classifications 
-     to actual health categories based on the available data to evaluate accuracye between the two.
-   - It analyzes the impact of other features on obesity using machine learning models and provides insights and recommendations based on the findings.
-   - Perform relevant EDA to get a better look on features that effect specific classes individually by observing for significant patterns or changes in the 
-     distribution of features corresponding to each individual class.
-   - Perform neccessary feature engineering and feature seleciton using RFECV.
-   - Performs KMeans Clustering by identifyin the ideal no. of clusters and how different model learns from different clusters.
-   - Perform Hyperparameter tuning through Bayesian Optimization, Optuna and GridSearchCV as needed to try and improve model performance
-   - Prioritize feature  importance for individual models.w
-   - Keep track of specific KPI metrics such as R2 score to understand model behavior for specific preprocessed datasets
-5. Review the results:
-   Evaluation Metrics: Found in results/evaluation_metrics.txt
-   Predictions: Found in results/predictions.csv
+
+1. Prepare Your Dataset:
+   - Place your datasets in the data/ directory.
+   -Ensure the dataset is named obesity_train.csv, Obesity_original_Dataset.csv, or adjust the script accordingly.
+
+2. Open the Jupyter Notebook:
+   - Launch the notebook: Identifying_and_Analysing_Obesity_types_using_Advanced_Machine_Learning.ipynb.
+
+3. Notebook Workflow:
+   - Data Preprocessing:
+      - Check for and handle null values, duplicate records, and other discrepancies within the raw data.
+   - BMI Calculation & Classification:
+      - Calculate BMI for individuals, classify them into health categories, and compare these classifications with actual health categories from the dataset to          evaluate accuracy.
+   - Feature Impact Analysis:
+      - Analyze the impact of other features on obesity using machine learning models, providing insights and recommendations based on findings.
+   - Exploratory Data Analysis (EDA):
+      - Perform EDA to examine features that affect specific obesity classes, observing significant patterns or changes in feature distributions.
+   - Feature Engineering & Selection:
+      - Apply necessary feature engineering and perform feature selection using RFECV (Recursive Feature Elimination with Cross-Validation).
+   - KMeans Prototyping:
+      - Identify the ideal number of clusters for KMeans and assess how different models learn from these clusters.
+   - Hyperparameter Tuning:
+      - Use Bayesian Optimization, Optuna, and GridSearchCV to optimize model performance.
+   - Feature Importance:
+      - Prioritize feature importance for individual models to understand their impact.
+   - KPI Metrics:
+      - Track specific key performance indicators (KPIs), such as R2 score, to evaluate model behavior on different preprocessed datasets.
+        
+4. Review the Results:
+
+   - Evaluation Metrics: Found in results/evaluation_metrics.txt.
+   - Predictions: Found in results/predictions.csv.
+
 
 ## Features
    - Data Preprocessing: Handles missing values and  normalization.
