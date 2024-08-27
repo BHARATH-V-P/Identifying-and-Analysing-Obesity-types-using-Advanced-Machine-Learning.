@@ -19,7 +19,7 @@ The dataset is diverse, with only minor imbalances. The project examines signifi
 ## Installation
 
 1. Clone The repository:
-   git clone https://github.com/BHARATH11112222/Identifying-and-Analysing-Obesity-types-using-Advanced-Machine-Learning.
+   git clone https://github.com/BHARATH-V-P/Identifying-and-Analysing-Obesity-types-using-Advanced-Machine-Learning.
 
 2. Navigate to project directory:
    cd Identifying-and-Analysing-Obesity-types-using-Advanced-Machine-Learning.
